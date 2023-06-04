@@ -7,7 +7,7 @@ using HotelierProject.EntityLayer.Concrete;
 
 namespace HotelierProject.DataAccessLayer.Abstract
 {
-    internal interface IServicesDal : IGenericDal<Service>
+    public interface IServicesDal : IGenericDal<Service>
     {
     }
 }
