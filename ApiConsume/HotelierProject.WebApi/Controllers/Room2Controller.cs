@@ -38,5 +38,17 @@ namespace HotelierProject.WebApi.Controllers
             _roomService.TInsert(values);
             return Ok();
         }
+
+        [HttpPut]
+        public IActionResult UpdateRoom(UpdateRoomDto updateRoomDto)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var values = _mapper.Map<Room>(updateRoomDto);
+            _roomService.TUpdate(values);
+            return Ok("Başarıyla Güncellendi!");
+        }
     }
 }
