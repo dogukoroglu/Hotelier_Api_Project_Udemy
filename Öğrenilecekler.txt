@@ -1,0 +1,2 @@
+Ders-21: Cors nedir ?
+Ders-22: DeserializeObject nedir ?
