@@ -1,2 +1,9 @@
 Ders-21: Cors nedir ?
 Ders-22: DeserializeObject nedir ?
+
+fa fa-hotel fa-2x text-primary rooms
+fa fa-utensils fa-2x text-primary food
+fa fa-spa fa-2x text-primary spa
+fa fa-swimmer fa-2x text-primary sports
+fa fa-glass-cheers fa-2x text-primary events
+fa fa-dumbbell fa-2x text-primary gym-yoga
