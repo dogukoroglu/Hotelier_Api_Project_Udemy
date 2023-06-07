@@ -10,11 +10,27 @@ using System.Threading.Tasks;
 
 namespace HotelierProject.DataAccessLayer.EntityFramework
 {
-    public class EfBookingDal : GenericRepository<Booking>, IBookingDal
-    {
-        public EfBookingDal(Context context) : base(context)
-        {
-            
-        }
-    }
+	public class EfBookingDal : GenericRepository<Booking>, IBookingDal
+	{
+		public EfBookingDal(Context context) : base(context)
+		{
+
+		}
+
+		public void BookingStatusChangeApproved(Booking booking)
+		{
+			var c = new Context();
+			var values = c.Bookings.Where(x => x.BookingID == booking.BookingID).FirstOrDefault();
+			values.Status = "Onaylandı";
+			c.SaveChanges();
+		}
+
+		public void BookingStatusChangeApproved2(int id)
+		{
+			var c = new Context();
+			var values = c.Bookings.Find(id);
+			values.Status = "Onaylandı";
+			c.SaveChanges();
+		}
+	}
 }

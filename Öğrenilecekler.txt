@@ -1,5 +1,6 @@
 Ders-21: Cors nedir ?
 Ders-22: DeserializeObject nedir ?
+bölüm12: jwt öðren
 
 fa fa-hotel fa-2x text-primary rooms
 fa fa-utensils fa-2x text-primary food
