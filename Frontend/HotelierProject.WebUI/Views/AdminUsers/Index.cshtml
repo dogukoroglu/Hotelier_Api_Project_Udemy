@@ -1,0 +1,37 @@
+﻿@using HotelierProject.EntityLayer.Concrete
+@model List<AppUser>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<table class="table table-xs mb-0">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Personel | Ad-Soyad</th>
+			<th>Kullanıcı Adı</th>
+			<th>Şehir</th>
+			<th>Telefon No</th>
+			<th>E-Mail</th>
+			<th>Durum</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.Id</td>
+				<td><img src="@item.ImageUrl" class=" rounded-circle mr-3" alt=""> @item.Name @item.Surname</td>
+				<td>@item.UserName</td>
+				<td>@item.City</td>
+				<td>@item.PhoneNumber</td>
+				<td>@item.Email</td>
+				<td><i class="fa fa-circle-o text-success  mr-2"></i> Aktif</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<br />
+<a href="/Register/Index/" class="btn btn-primary">Yeni Kullanıcı Kaydı</a>

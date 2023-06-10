@@ -1,12 +1,14 @@
-﻿using HotelierProject.WebUI.Dtos.BookingDto;
-using HotelierProject.WebUI.Dtos.ContactDto;
+﻿using HotelierProject.WebUI.Dtos.ContactDto;
+using HotelierProject.WebUI.Dtos.MessageCategoryDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using System.Net.Http;
 using System.Text;
 
 namespace HotelierProject.WebUI.Controllers
 {
+	[AllowAnonymous]
 	public class ContactController : Controller
 	{
 		private readonly IHttpClientFactory _httpClientFactory;
@@ -15,8 +17,21 @@ namespace HotelierProject.WebUI.Controllers
 		{
 			_httpClientFactory = httpClientFactory;
 		}
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
 		{
+			var client = _httpClientFactory.CreateClient();
+			var responseMessage = await client.GetAsync("http://localhost:60522/api/MessageCategory");
+
+			var jsonData = await responseMessage.Content.ReadAsStringAsync();
+			var values = JsonConvert.DeserializeObject<List<ResultMessageCategoryDto>>(jsonData);
+			List<SelectListItem> values2 = (from x in values
+											select new SelectListItem
+											{
+												Text = x.MessageCategoryName,
+												Value = x.MessageCategoryID.ToString()
+											}).ToList();
+			ViewBag.v = values2;
+
 			return View();
 		}
 
@@ -34,7 +49,11 @@ namespace HotelierProject.WebUI.Controllers
 			var jsonData = JsonConvert.SerializeObject(createContactDto);
 			StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 			var responseMessage = await client.PostAsync("http://localhost:60522/api/Contact", stringContent);
-			return RedirectToAction("Index", "Default");
+			if(responseMessage.IsSuccessStatusCode)
+			{
+				return RedirectToAction("Index", "Default");
+			}
+			return View();
 		}
 	}
 }

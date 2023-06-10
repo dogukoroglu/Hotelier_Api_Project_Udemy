@@ -1,10 +1,12 @@
 ﻿using HotelierProject.EntityLayer.Concrete;
 using HotelierProject.WebUI.Dtos.RegisterDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelierProject.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -23,6 +25,9 @@ namespace HotelierProject.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(CreateNewUserDto createNewUserDto)
         {
+            Random random = new Random();
+            int phoneNumber = random.Next(100000000, 999999999);
+
             if (!ModelState.IsValid)
             {
                 return View();
@@ -33,7 +38,12 @@ namespace HotelierProject.WebUI.Controllers
                 Surname = createNewUserDto.Surname,
                 Email = createNewUserDto.Mail,
                 UserName = createNewUserDto.Username,
-                City = "test"
+                City = "test",
+                WorkLocationID = 1,
+                WorkDepartment = "test",
+                ImageUrl = "test",
+                PhoneNumber = phoneNumber.ToString()
+                
             };
             var result = await _userManager.CreateAsync(appUser, createNewUserDto.Password);
             if (result.Succeeded)

@@ -1,11 +1,13 @@
 ﻿using HotelierProject.WebUI.Dtos.BookingDto;
 using HotelierProject.WebUI.Dtos.SubscribeDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace HotelierProject.WebUI.Controllers
 {
+	[AllowAnonymous]
 	public class BookingController : Controller
 	{
 		private readonly IHttpClientFactory _httpClientFactory;

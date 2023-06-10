@@ -9,8 +9,8 @@ namespace HotelierProject.WebApi.Controllers
 	[ApiController]
 	public class SendMessageController : ControllerBase
 	{
-		private readonly ISendMessageService _sendMessageService;
 
+		private readonly ISendMessageService _sendMessageService;
 		public SendMessageController(ISendMessageService sendMessageService)
 		{
 			_sendMessageService = sendMessageService;
@@ -22,14 +22,12 @@ namespace HotelierProject.WebApi.Controllers
 			var values = _sendMessageService.TGetList();
 			return Ok(values);
 		}
-
 		[HttpPost]
 		public IActionResult AddSendMessage(SendMessage sendMessage)
 		{
 			_sendMessageService.TInsert(sendMessage);
 			return Ok();
 		}
-
 		[HttpDelete("{id}")]
 		public IActionResult DeleteSendMessage(int id)
 		{
@@ -37,19 +35,72 @@ namespace HotelierProject.WebApi.Controllers
 			_sendMessageService.TDelete(values);
 			return Ok();
 		}
-
 		[HttpPut]
 		public IActionResult UpdateSendMessage(SendMessage sendMessage)
 		{
 			_sendMessageService.TUpdate(sendMessage);
 			return Ok();
 		}
-
 		[HttpGet("{id}")]
 		public IActionResult GetSendMessage(int id)
 		{
 			var values = _sendMessageService.TGetByID(id);
 			return Ok(values);
 		}
+		[HttpGet("GetSendMessageCount")]
+		public IActionResult GetSendMessageCount()
+		{
+			return Ok(_sendMessageService.TGetSendMessageCount());
+		}
+
+		//private readonly ISendMessageService _sendMessageService;
+
+		//public SendMessageController(ISendMessageService sendMessageService)
+		//{
+		//	_sendMessageService = sendMessageService;
+		//}
+
+		//[HttpGet]
+		//public IActionResult SendMessageList()
+		//{
+		//	var values = _sendMessageService.TGetList();
+		//	return Ok(values);
+		//}
+
+		//[HttpPost]
+		//public IActionResult AddSendMessage(SendMessage sendMessage)
+		//{
+		//	_sendMessageService.TInsert(sendMessage);
+		//	return Ok();
+		//}
+
+		//[HttpDelete("{id}")]
+		//public IActionResult DeleteSendMessage(int id)
+		//{
+		//	var values = _sendMessageService.TGetByID(id);
+		//	_sendMessageService.TDelete(values);
+		//	return Ok();
+		//}
+
+		//[HttpPut]
+		//public IActionResult UpdateSendMessage(SendMessage sendMessage)
+		//{
+		//	_sendMessageService.TUpdate(sendMessage);
+		//	return Ok();
+		//}
+
+		//[HttpGet("{id}")]
+		//public IActionResult GetSendMessage(int id)
+		//{
+		//	var values = _sendMessageService.TGetByID(id);
+		//	return Ok(values);
+		//}
+
+		//[HttpGet("GetSendMessageCount")]
+		//public IActionResult GetSendMessageCount()
+		//{
+		//	var value = _sendMessageService.TGetSendMessageCount();
+		//	return Ok(value);
+		//}
 	}
 }
