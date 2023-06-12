@@ -20,12 +20,12 @@ namespace HotelierProject.BusinessLayer.Concrete
 
 		public void TDelete(MessageCategory t)
 		{
-			_messageCategoryDal.Delete(t);
+			throw new NotImplementedException();
 		}
 
 		public MessageCategory TGetByID(int id)
 		{
-			return _messageCategoryDal.GetByID(id);
+			throw new NotImplementedException();
 		}
 
 		public List<MessageCategory> TGetList()
@@ -35,12 +35,12 @@ namespace HotelierProject.BusinessLayer.Concrete
 
 		public void TInsert(MessageCategory t)
 		{
-			_messageCategoryDal.Insert(t);
+			throw new NotImplementedException();
 		}
 
 		public void TUpdate(MessageCategory t)
 		{
-			_messageCategoryDal.Update(t);
+			throw new NotImplementedException();
 		}
 	}
 }
