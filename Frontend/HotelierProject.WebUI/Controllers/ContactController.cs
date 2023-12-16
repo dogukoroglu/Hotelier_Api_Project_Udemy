@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Text;
 
 namespace HotelierProject.WebUI.Controllers
@@ -49,7 +50,7 @@ namespace HotelierProject.WebUI.Controllers
 			var jsonData = JsonConvert.SerializeObject(createContactDto);
 			StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 			var responseMessage = await client.PostAsync("http://localhost:60522/api/Contact", stringContent);
-			if(responseMessage.IsSuccessStatusCode)
+			if (responseMessage.IsSuccessStatusCode)
 			{
 				return RedirectToAction("Index", "Default");
 			}
